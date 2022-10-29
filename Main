@@ -13,7 +13,7 @@ local CurrentCamera = Workspace.CurrentCamera
 local DaHoodSettings = {
     SilentAim = true,
     AimLock = false,
-    Prediction = 0.14,
+    Prediction = 0.11243,
     AimLockKeybind = Enum.KeyCode.E
 }
 getgenv().DaHoodSettings = DaHoodSettings
@@ -49,6 +49,9 @@ __index = hookmetamethod(game, "__index", function(t, k)
     return __index(t, k)
 end)
 
+
+
+
 RunService:BindToRenderStep("AimLock", 0, function()
     if (DaHoodSettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(DaHoodSettings.AimLockKeybind)) then
         local SelectedPart = Aiming.SelectedPart
@@ -58,3 +61,27 @@ RunService:BindToRenderStep("AimLock", 0, function()
         CurrentCamera.CFrame = CFrame.lookAt(CurrentCamera.CFrame.Position, Hit.Position)
     end
     end)
+
+
+    local player = game.Players.LocalPlayer
+    local mouse = player:GetMouse()
+    mouse.KeyDown:Connect(function(key)
+    
+        if key == "x" then
+                
+        
+        
+            if DaHoodSettings.SilentAim == false then
+                
+            DaHoodSettings.SilentAim = true
+                
+            else
+                    
+            DaHoodSettings.SilentAim = false
+        
+            end
+        end
+    end)
+    
+    
+        
